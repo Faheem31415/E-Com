@@ -13,7 +13,7 @@ const VerifyPayment = () => {
 
   const handleVerifyPayment = async () => {
     try {
-      if (!token) return;
+      if (!token) return null;
 
       const response = await axios.post(
         backendUrl + "/api/order/verifyStripe",
@@ -30,14 +30,31 @@ const VerifyPayment = () => {
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+      navigate("/cart");
     }
   };
-
   useEffect(() => {
-    handleVerifyPayment();
+    if (token !== undefined && token !== null) {
+      handleVerifyPayment();
+    }
   }, [token]);
 
-  return <div>Verifying payment...</div>;
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center gap-4">
+        {/* Spinner */}
+        <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
+
+        {/* Text */}
+        <p className="text-lg font-semibold text-gray-700">
+          Verifying payment...
+        </p>
+        <p className="text-sm text-gray-500">
+          Please wait, do not refresh the page
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default VerifyPayment;
