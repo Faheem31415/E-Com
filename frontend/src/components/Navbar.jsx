@@ -6,6 +6,7 @@ import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const {
     setShowSearch,
@@ -17,9 +18,6 @@ const Navbar = () => {
     cartItems,
   } = useContext(ShopContext);
 
-  // --------------------------
-  // LOGOUT ONLY ON TAB/BROWSER CLOSE (NOT ON REFRESH)
-  // --------------------------
   useEffect(() => {
     // Use navigation timing to detect reload vs close
     const isReload = () => {
@@ -28,10 +26,10 @@ const Navbar = () => {
         if (navEntries && navEntries.length > 0) {
           return navEntries[0].type === "reload";
         }
-        // fallback for older browsers
-        // performance.navigation.type === 1 means reload
-        // eslint-disable-next-line no-undef
-        return typeof performance.navigation !== "undefined" && performance.navigation.type === 1;
+        return (
+          typeof performance.navigation !== "undefined" &&
+          performance.navigation.type === 1
+        );
       } catch (err) {
         return false;
       }
@@ -111,22 +109,38 @@ const Navbar = () => {
       <ul className="hidden sm:flex gap-7 text-[16px] md:text-[17px] text-gray-700 font-medium">
         <NavLink to="/" className="flex flex-col items-center gap-1">
           <p>Home</p>
-          <hr className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${window.location.pathname === "/" ? "block" : "hidden"}`} />
+          <hr
+            className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${
+              window.location.pathname === "/" ? "block" : "hidden"
+            }`}
+          />
         </NavLink>
 
         <NavLink to="/collection" className="flex flex-col items-center gap-1">
           <p>Collection</p>
-          <hr className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${window.location.pathname === "/collection" ? "block" : "hidden"}`} />
+          <hr
+            className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${
+              window.location.pathname === "/collection" ? "block" : "hidden"
+            }`}
+          />
         </NavLink>
 
         <NavLink to="/about" className="flex flex-col items-center gap-1">
           <p>About</p>
-          <hr className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${window.location.pathname === "/about" ? "block" : "hidden"}`} />
+          <hr
+            className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${
+              window.location.pathname === "/about" ? "block" : "hidden"
+            }`}
+          />
         </NavLink>
 
         <NavLink to="/contact" className="flex flex-col items-center gap-1">
           <p>Contact</p>
-          <hr className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${window.location.pathname === "/contact" ? "block" : "hidden"}`} />
+          <hr
+            className={`w-2/4 h-[1.5px] bg-gray-700 border-none ${
+              window.location.pathname === "/contact" ? "block" : "hidden"
+            }`}
+          />
         </NavLink>
       </ul>
 
@@ -142,27 +156,52 @@ const Navbar = () => {
         </Link>
 
         {/* Profile */}
-        <div className="group relative">
+        <div className="relative">
           <img
-            onClick={() => !token && navigate("/login")}
             src={assets.profile_icon}
-            className="w-5 cursor-pointer"
             alt="profile"
+            onClick={() => {
+              if (!token) {
+                navigate("/login");
+              } else {
+                setShowProfileMenu((prev) => !prev);
+              }
+            }}
+            className="w-5 cursor-pointer hover:scale-110 transition-transform"
           />
 
-          {token ? (
-            <div className="hidden group-hover:block absolute right-0 pt-4 z-50">
+          {token && showProfileMenu && (
+            <div className="absolute right-0 pt-4 z-50">
               <div className="flex flex-col gap-2 w-40 py-3 px-5 bg-white text-gray-600 rounded-lg shadow-xl border">
-                <p className="cursor-pointer hover:text-black">My Profile</p>
-                <p onClick={() => navigate("/orders")} className="cursor-pointer hover:text-black">
+                <p
+                  className="cursor-pointer hover:text-black"
+                  onClick={() => setShowProfileMenu(false)}
+                >
+                  My Profile
+                </p>
+
+                <p
+                  className="cursor-pointer hover:text-black"
+                  onClick={() => {
+                    navigate("/orders");
+                    setShowProfileMenu(false);
+                  }}
+                >
                   Orders
                 </p>
-                <p onClick={logout} className="cursor-pointer hover:text-black">
+
+                <p
+                  className="cursor-pointer hover:text-black"
+                  onClick={() => {
+                    logout();
+                    setShowProfileMenu(false);
+                  }}
+                >
                   Logout
                 </p>
               </div>
             </div>
-          ) : null}
+          )}
         </div>
 
         {/* Cart */}
@@ -190,10 +229,18 @@ const Navbar = () => {
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-md sm:hidden z-50">
           <ul className="flex flex-col items-center py-4 space-y-3 text-[16px] text-gray-700 font-medium">
-            <NavLink to="/" onClick={() => setMenuOpen(false)}>Home</NavLink>
-            <NavLink to="/collection" onClick={() => setMenuOpen(false)}>Collection</NavLink>
-            <NavLink to="/about" onClick={() => setMenuOpen(false)}>About</NavLink>
-            <NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
+            <NavLink to="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </NavLink>
+            <NavLink to="/collection" onClick={() => setMenuOpen(false)}>
+              Collection
+            </NavLink>
+            <NavLink to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </NavLink>
+            <NavLink to="/contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </NavLink>
           </ul>
         </div>
       )}

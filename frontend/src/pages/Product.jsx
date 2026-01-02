@@ -135,18 +135,20 @@ const Product = () => {
 
         <div className="mt-4 text-gray-600 text-sm md:text-base space-y-4 leading-relaxed">
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates
-            velit distinctio aliquam vitae. Esse asperiores sint recusandae
-            minus eveniet doloribus beatae excepturi nulla neque nostrum?
+            Crafted with premium-quality fabric, this clothing item is designed
+            to offer all-day comfort while maintaining a modern and stylish
+            look. The breathable material feels soft on the skin, making it
+            suitable for both everyday wear and special occasions.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio
-            assumenda, incidunt iure fugit blanditiis iste suscipit distinctio
-            ad animi, maxime eveniet. Itaque vero quas dolor saepe non quibusdam
-            quo omnis.
+            Featuring a durable finish and a tailored fit, this piece combines
+            practicality with elegance. It is easy to maintain, retains its
+            color and shape after multiple washes, and pairs effortlessly with a
+            variety of outfits for a versatile wardrobe choice.
           </p>
         </div>
       </div>
+
       {/* related products */}
 
       <RelatedProducts
