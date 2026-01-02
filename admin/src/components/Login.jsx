@@ -4,7 +4,7 @@ import { backendurl } from "../App";
 import { toast } from "react-toastify";
 
 // ADMIN_EMAIL="admin@admin.com"
-// ADMIN_PASSWORD="admin@123"
+// ADMIN_PASSWORD="8 "
 
 
 const Login = ({setToken}) => {
