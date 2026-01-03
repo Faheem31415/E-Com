@@ -42,7 +42,7 @@ function Footer() {
           </p>
           <ul className="space-y-2 text-sm sm:text-base">
             <li>📞 +1-2121-156-7890</li>
-            <li>✉️ contact@forever.com</li>
+            <li>✉️ contact@clothify.com</li>
           </ul>
         </div>
       </div>
