@@ -102,7 +102,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between py-5 px-4 md:px-10 font-medium relative bg-white shadow-sm z-50">
       <Link to="/">
-        <img src={assets.logo} className="w-36" alt="logo" />
+        <img src={assets.c_logo} className="w-22 h-10 " alt="logo" />
       </Link>
 
       {/* Desktop Menu */}
