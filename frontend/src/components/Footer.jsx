@@ -10,7 +10,7 @@ function Footer() {
         {/* Logo + Description */}
         <div className="text-center sm:text-left">
           <img
-            src={assets.logo}
+            src={assets.c_logo}
             alt="Brand Logo"
             className="w-28 sm:w-36 mx-auto sm:mx-0 mb-4"
           />
