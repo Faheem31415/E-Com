@@ -49,7 +49,7 @@ function Footer() {
 
       {/* Bottom Section */}
       <div className="border-t border-gray-200 pt-4 text-center text-xs sm:text-sm text-gray-500">
-        <p>© 2025 forever.com — All Rights Reserved</p>
+        <p>© 2026 forever.com — All Rights Reserved</p>
       </div>
     </footer>
   );
