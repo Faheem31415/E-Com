@@ -7,6 +7,10 @@ import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import dns from "dns";
+
+//change dns
+dns.setServers(["1.1.1.1","8.8.8.8"]);
 
 //App Config
 const app = express();
