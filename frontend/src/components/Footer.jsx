@@ -54,7 +54,7 @@ function Footer() {
 
       {/* Bottom Section */}
       <div className="border-t border-gray-200 pt-4 text-center text-xs sm:text-sm text-gray-500">
-        <p>© {new Date().getFullYear()} forever.com — All Rights Reserved</p>
+        <p>© {new Date().getFullYear()} clothify.com — All Rights Reserved</p>
       </div>
     </footer>
   );
