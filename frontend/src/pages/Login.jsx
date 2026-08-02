@@ -33,7 +33,8 @@ const Login = () => {
       setToken(res.data.token);
       navigate("/");
     } catch (err) {
-      toast.error(err?.message || "Something went wrong");
+      const message = err?.response?.data?.message || err?.message || "Something went wrong";
+      toast.error(message);
     }
   };
 
@@ -43,7 +44,7 @@ const Login = () => {
   }, [token, navigate]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-linear-to-br from-gray-100 via-gray-200 to-gray-300 relative overflow-hidden">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 relative overflow-hidden">
 
       {/* Background Gradient Blobs */}
       <div className="absolute inset-0 -z-10">
@@ -105,7 +106,7 @@ const Login = () => {
           </p>
         )}
 
-        <button className="w-full py-3 text-lg font-semibold text-white bg-linear-to-r from-blue-600 to-purple-600 hover:opacity-90 transition rounded-lg shadow-lg">
+        <button className="w-full py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 transition rounded-lg shadow-lg">
           {state === "Login" ? "Sign In" : "Sign Up"}
         </button>
 
