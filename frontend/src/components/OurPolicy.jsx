@@ -6,41 +6,50 @@ function OurPolicy() {
     {
       icon: assets.exchange_icon,
       title: "Easy Exchange Policy",
-      desc: "We offer hassle-free exchange policy",
+      desc: "Hassle-free sizing exchanges with instant assistance.",
     },
     {
       icon: assets.quality_icon,
       title: "7 Days Return Policy",
-      desc: "We provide 7 days free return policy",
+      desc: "Return with ease within 7 days for a 100% full refund.",
     },
     {
       icon: assets.support_img,
-      title: "Best Customer Support",
-      desc: "We provide 24/7 customer support",
+      title: "24/7 Dedicated Support",
+      desc: "Round-the-clock expert support for every order query.",
     },
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-10 text-gray-800">
-        Our Policies
-      </h2>
+    <div className="max-w-6xl mx-auto px-4 py-14">
+      <div className="text-center mb-10">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 tracking-tight">
+          Why Shop With Us
+        </h2>
+        <p className="text-xs sm:text-sm text-gray-500 mt-2 max-w-md mx-auto">
+          We are committed to delivering premium quality, seamless customer service, and absolute peace of mind.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {policies.map((policy, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-center bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
+            className="group flex flex-col items-center text-center bg-white p-7 rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
-            <img
-              src={policy.icon}
-              alt={policy.title}
-              className="w-14 h-14 mb-4 object-contain"
-            />
-            <p className="text-lg font-semibold text-gray-700 mb-1">
+            <div className="w-16 h-16 rounded-2xl bg-gray-50 group-hover:bg-gray-100 flex items-center justify-center mb-5 transition-colors duration-300">
+              <img
+                src={policy.icon}
+                alt={policy.title}
+                className="w-9 h-9 object-contain group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-1.5">
               {policy.title}
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-500 leading-relaxed max-w-xs">
+              {policy.desc}
             </p>
-            <p className="text-sm text-gray-500">{policy.desc}</p>
           </div>
         ))}
       </div>

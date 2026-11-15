@@ -19,6 +19,7 @@ export const ShopContextProvider = ({ children }) => {
   const [tokenState, setTokenState] = useState("");
 
   const [products, setProducts] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(true);
   const [cartItems, setCartItems] = useState({});
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -49,10 +50,17 @@ export const ShopContextProvider = ({ children }) => {
   /* ------------------------- Products ------------------------- */
   const getProducts = useCallback(async () => {
     try {
+      setProductsLoading(true);
       const res = await axios.get(`${backendUrl}/api/product/list`);
-      if (res.data?.success) setProducts(res.data.products || []);
+      if (res.data?.success) {
+        setProducts(res.data.products || []);
+      } else {
+        toast.error(res.data?.message || "Failed to fetch products");
+      }
     } catch (err) {
       toast.error(err?.message || "Failed to fetch products");
+    } finally {
+      setProductsLoading(false);
     }
   }, [backendUrl]);
 
@@ -181,6 +189,8 @@ export const ShopContextProvider = ({ children }) => {
     token: tokenState,
     setToken,
     products,
+    productsLoading,
+    getProducts,
     cartItems,
     addToCart,
     updateQuantity,
